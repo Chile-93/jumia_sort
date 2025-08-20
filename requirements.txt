@@ -19,7 +19,11 @@ narwhals==2.1.2
 numpy==2.3.2
 packaging==25.0
 pandas==2.3.1
-pillow==11.3.0
+pillow==11.3.0streamlit
+pandas
+requests
+beautifulsoup4
+lxml
 protobuf==6.32.0
 pyarrow==21.0.0
 pydeck==0.9.1
