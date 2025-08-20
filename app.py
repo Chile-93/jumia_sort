@@ -2,7 +2,9 @@
 import streamlit as st
 from scraper import scrape_jumia
 import pandas as pd
+from dotenv import load_dotenv
 
+load_dotenv()
 
 st.title("🛍️ Jumia Product Recommender")
 
@@ -11,7 +13,7 @@ url = st.text_input("Paste any Jumia category/search URL:")
 if st.button("Scrape & Recommend"):
     if url:
         with st.spinner("Scraping Jumia... please wait ⏳"):
-            df = scrape_jumia(url, max_pages=25)
+            df = scrape_jumia(url, max_pages=5)
 
         if df.empty:
             st.error("No products found. Please check the link.")

@@ -8,7 +8,7 @@ import os
 
 API_KEY = os.getenv("SCRAPER_API_KEY")
 
-def scrape_jumia(base_url, max_pages=15):
+def scrape_jumia(base_url, max_pages=5):
     # headers = {
         # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'}
     
