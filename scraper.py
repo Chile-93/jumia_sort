@@ -4,11 +4,14 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import random
 import time
+import os 
 
-def scrape_jumia(base_url, max_pages=25):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-    }
+API_KEY = os.getenv("SCRAPER_API_KEY")
+
+def scrape_jumia(base_url, max_pages=15):
+    # headers = {
+        # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'}
+    
     all_products = []
 
     for page in range(1, max_pages + 1):
@@ -17,7 +20,11 @@ def scrape_jumia(base_url, max_pages=25):
         else:
             url = f"{base_url}?page={page}"
 
-        res = requests.get(url, headers=headers)
+        scraper_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}" #using API_KEY will prevent the app from been blocked by jumia when deployed on a cloud server
+        res = requests.get(scraper_url)
+
+        # res = requests.get(url, headers=headers) #this will run s header like the browser user-agent, which may get blocked by jumia website when deployed on a cloud serve
+        print("DEBUG HTML PAGE", page, ":", res.text[:2000])
         if res.status_code != 200:
             break
 
